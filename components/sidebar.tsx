@@ -75,7 +75,7 @@ const Sidebar = ({
                             alt="Logo"
                         />
                     </div>  
-                    <h1 className={ cn("text-2xl font-bold", monsterrat) }>AI Web App</h1>
+                    <h1 className={ cn("text-2xl font-bold", monsterrat) }>Victory</h1>
                 </Link>
                 <div className="space-y-1">
                     {routes.map((route) => (

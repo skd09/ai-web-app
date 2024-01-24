@@ -6,15 +6,17 @@ import { Progress } from "./ui/progress"
 import { Button } from "./ui/button"
 import { Zap } from "lucide-react"
 import { ProgressIndicator } from "@radix-ui/react-progress"
+import { useProModal } from "@/hooks/use-pro-model"
 
 interface FreeCountProps{
     apiLimitCount: number
 }
 
-
 const FreeCounter = ({
     apiLimitCount = 0
 }: FreeCountProps) => {
+    const proModal = useProModal()
+
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
@@ -38,7 +40,7 @@ const FreeCounter = ({
                             <ProgressIndicator className="bg-purple"/>
                         </Progress>
                     </div>
-                    <Button className="w-full" variant="premium">
+                    <Button className="w-full" variant="premium" onClick={proModal.onOpen}>
                         Upgrade
                         <Zap className="w-4 h-4 ml-2 fill-white"/>
                     </Button>
