@@ -54,7 +54,7 @@ const ConversationPage = () => {
     return(
         <div>
             <Heading
-                title="Conversion"
+                title="Conversation"
                 description="Our most advanced conversation model"
                 icon={MessageSquareIcon}
                 iconColor="text-violet-500"

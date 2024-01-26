@@ -9,11 +9,13 @@ import { ProgressIndicator } from "@radix-ui/react-progress"
 import { useProModal } from "@/hooks/use-pro-model"
 
 interface FreeCountProps{
-    apiLimitCount: number
+    apiLimitCount: number,
+    isPro: boolean
 }
 
 const FreeCounter = ({
-    apiLimitCount = 0
+    apiLimitCount = 0,
+    isPro = false
 }: FreeCountProps) => {
     const proModal = useProModal()
 
@@ -24,6 +26,8 @@ const FreeCounter = ({
     }, [])
 
     if (!mounted){ return null }
+
+    if (isPro){ return null }
 
     return(
         <div className="px-3">
