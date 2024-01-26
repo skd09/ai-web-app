@@ -3,11 +3,13 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
 import Stripe from "stripe";
-import { subscribe } from "diagnostics_channel";
+
+export const dynamic = 'force-dynamic'
 
 export async function POST(req: Request){
     const body = await req.text()
     const signature = headers().get("Stripe-Signature") as string
+
     let event: Stripe.Event;
     try {
         event = stripe.webhooks.constructEvent(
