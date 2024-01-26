@@ -18,9 +18,12 @@ import { Select, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/
 import { SelectContent } from "@radix-ui/react-select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+import { useProModal } from "@/hooks/use-pro-model";
+import toast from "react-hot-toast";
 
 const ImagePage = () => {
     const router = useRouter()
+    const proModal = useProModal()
     const [images, setImages] = useState<string[]>([])
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -40,8 +43,11 @@ const ImagePage = () => {
             setImages(urls)
             form.reset()
         }catch(error: any){
-            // TODO: Open Pro Modal
-            console.log(error)
+            if (error?.response?.status === 403){
+                proModal.onOpen()
+            }else{
+                toast.error("Something went wrong")
+            }
         }finally{
             router.refresh()
         }
@@ -51,7 +57,7 @@ const ImagePage = () => {
         <div>
             <Heading
                 title="Image Generation"
-                description="Turn your prompt into an image."
+                description="Turn your prompt into an image"
                 icon={ImageIcon}
                 iconColor="text-pink-700"
                 bgColor="bg-pink-700/10"

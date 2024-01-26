@@ -1,7 +1,6 @@
 import { auth } from "@clerk/nextjs"
 import prismadb from "./prismadb"
 import { MAX_FREE_COUNTS } from "@/constants"
-import { count } from "console"
 
 export const increaseApiLimit = async() => {
     const { userId } = auth()
@@ -18,9 +17,11 @@ export const increaseApiLimit = async() => {
             data: { count: userApiLimit.count + 1 }
         })
     }else {
-        await prismadb,userApiLimit.create({
-            userId: userId,
-            count: 1
+        await prismadb.userApiLimit.create({
+           data: {
+                userId: userId,
+                count: 1
+           }
         })
     }
 }
