@@ -1,5 +1,6 @@
-import LandingPage from "./(landing)/page";
+"use client";
 import { cookies } from 'next/headers'
+import LandingPage from './(landing)/page';
 
 async function getCookieData() {
   const cookieData = cookies().getAll()
