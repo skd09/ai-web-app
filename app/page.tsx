@@ -1,7 +1,18 @@
-import Image from "next/image";
-import LandingPage from "./(landing)/page";
+"use client";
+import { cookies } from 'next/headers'
+import LandingPage from './(landing)/page';
 
-export default function Home() {
+async function getCookieData() {
+  const cookieData = cookies().getAll()
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      resolve(cookieData)
+    }, 1000)
+  )
+}
+
+export default async function Home() {
+  const cookieData = await getCookieData()
   return (
     <LandingPage/>
   );
